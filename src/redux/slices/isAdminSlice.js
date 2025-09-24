@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const isAdminSlice = createSlice({
   name: "isAdmin",
   initialState: {
-    isAdmin: false,
+    isAdmin: true,
   },
   reducers: {
     setAdmin: (state, action) => {

@@ -111,8 +111,8 @@ cd h2platform-blog
 
  # Screenshot
 
-![Desktop Login](./src/screenshots/blog-login.png)
-![Desktop posts EN](./src/screenshots/blog-posts-en.png)
+![Desktop Login](./screenshots/blog-login.png)
+![Desktop posts EN](./screenshots/blog-posts-en.png)
 
 
 👨‍💻 Author
