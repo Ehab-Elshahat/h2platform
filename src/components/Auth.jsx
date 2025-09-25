@@ -13,6 +13,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import { motion } from "framer-motion";
+
 export default function Auth() {
   // translation
   const { t} = useTranslation();
@@ -78,7 +80,16 @@ export default function Auth() {
       className="flex items-center justify-center min-h-scree bg-gray-800"
       style={{ minHeight: "calc(100vh - 120px)" }}
     >
-      <div className="bg-gray-900 p-8 rounded-xl shadow-lg w-96">
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 120, // lower = softer
+          damping: 20, // higher = less bounce
+        }}
+        className="bg-gray-900 p-8 rounded-xl shadow-lg w-96"
+      >
         {user ? (
           ""
         ) : (
@@ -130,7 +141,9 @@ export default function Auth() {
             </button>
 
             <p className="text-gray-400 text-sm text-center mt-4">
-              {isLogin ? t("Don't have an account?") : t("Already have an account?")}{" "}
+              {isLogin
+                ? t("Don't have an account?")
+                : t("Already have an account?")}{" "}
               <span
                 onClick={() => setIsLogin(!isLogin)}
                 className="text-blue-400 cursor-pointer hover:underline"
@@ -140,7 +153,7 @@ export default function Auth() {
             </p>
           </>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

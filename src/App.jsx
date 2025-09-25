@@ -17,6 +17,8 @@ import { login, logout } from "./redux/slices/authSlice";
 import AddPostPage from "./pages/AddPostPage";
 import PostsListPage from "./pages/PostsListPage";
 
+// toastify
+import { ToastContainer } from "react-toastify";
 
 function App() {
   // const user = useSelector((state)=> state.auth.user)
@@ -43,6 +45,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <ToastContainer />
       <NavBar />
       <main className="flex-grow  bg-gray-800  ">
         {/* Router Here */}

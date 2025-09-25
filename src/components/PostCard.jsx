@@ -3,11 +3,15 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editPost, removePost } from "../redux/slices/postSlice";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+import { motion } from "framer-motion";
+
 
 export default function PostCard({ post }) {
 
       const { t } = useTranslation();
   
+      
 
     const isAdmin = useSelector((state) => state.isAdmin.isAdmin);
 
@@ -19,17 +23,31 @@ export default function PostCard({ post }) {
   const [content, setContent] = useState(post.content);
   const [category, setCategory] = useState(post.category || "");
 
+  
+
   const handleSave = () => {
     dispatch(editPost({ id: post.id, title, content, category }));
     setIsEditing(false);
+    toast.success(t("The post has been Edit"), {
+      className: "toast-error",
+    });
   };
 
   const handleDelete = () => {
     dispatch(removePost(post.id));
+  
+      toast.error(t("The post has been deleted"), {
+        className: "toast-error",
+      });
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg overflow-hidden hover:shadow-lg transition w-xl ">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: .8, ease: "easeInOut" }}
+      className="bg-white dark:bg-gray-900 shadow-md rounded-lg overflow-hidden hover:shadow-lg transition w-xl "
+    >
       {/* Image */}
       {post.imageUrl && (
         <img
@@ -111,6 +129,6 @@ export default function PostCard({ post }) {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -11,12 +11,10 @@ import { auth } from "../firebase";
 import { useTranslation } from "react-i18next";
 
 export default function NavBar() {
-
   // translation
-    const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-
-  // if user is admin or reader 
+  // if user is admin or reader
   const isAdmin = useSelector((state) => state.isAdmin.isAdmin);
   const dispatch = useDispatch();
 
@@ -26,7 +24,6 @@ export default function NavBar() {
 
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
-
 
   // ✅ Logout
   const handleLogout = async () => {
@@ -107,10 +104,11 @@ export default function NavBar() {
           <div className="sm:ml-0 ml-2">
             <button
               className="text-white  text-md cursor-pointer"
-              onClick={() =>
-                i18n.changeLanguage(i18n.language === "en" ? "ar" : "en")
-                
-              }
+              onClick={() => {
+                const newLang = i18n.language === "en" ? "ar" : "en";
+                i18n.changeLanguage(newLang);
+                localStorage.setItem("lang", newLang);
+              }}
             >
               {" "}
               {i18n.language === "en" ? "AR" : "EN"}
